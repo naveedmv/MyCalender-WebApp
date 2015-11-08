@@ -25,7 +25,7 @@ function Signin(event) {
     $.ajax({
         type: 'POST',
         data: signinInputs,
-        url: 'http://localhost:3000/login'
+        url: 'http://130.233.42.143:3000/login'
     }).done(function( res ) {
         if(res.success){
             window.location.href = res.url;
@@ -42,7 +42,7 @@ function Signup(event) {
     // Use AJAX to Get the object to our SignUp service
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:3000/signup'
+        url: 'http://130.233.42.143:3000/signup'
     }).done(function( response ) {
         window.location.href = response.url;
     });

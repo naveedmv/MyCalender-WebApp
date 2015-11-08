@@ -21,7 +21,7 @@ function RegisterUser(event) {
     $.ajax({
         type: 'POST',
         data: signupInputs,
-        url: 'http://localhost:3000/signup'
+        url: 'http://130.233.42.143:3000/signup'
     }).done(function( response ) {
         if (response.success) {
             window.location.href = response.url;
