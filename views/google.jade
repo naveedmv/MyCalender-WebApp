@@ -1,0 +1,48 @@
+//
+   Created by Navii on 11/5/2015.
+
+extends layout
+
+block content
+   script(src='/javascripts/google.js')
+   script(src='https://apis.google.com/js/client.js?onload=checkAuth')
+   script(src='https://apis.google.com/js/client.js?onload=gapiLoad')
+   script(type='text/javascript', src='http://www.google.com/jsapi')
+   script(src='https://apis.google.com/js/platform.js', async='', defer='')
+   meta(name='google-signin-client_id', content='882155603770-h7mt1geshpf64ncp3so65rssiet9spjc.apps.googleusercontent.com')
+
+   div.container
+      div.row
+         div.col-sm-10.col-md-10.col-md-offset-1
+            #title
+            div.signup-wall(align='center')
+               div(align='center')
+               a(href='/home', class='button') Home
+               | &nbsp; | &nbsp;
+               a(href='/search', class='button') Search
+               | &nbsp; | &nbsp;
+               a(href='/calendarview', class='button') Calender View
+               | &nbsp; | &nbsp;
+               a(href='/signout', class='button') Sign Out
+               br
+               br
+
+               #authorize-div-import(style='display: inline')
+                  span Import Events from Google Calendar
+                  // Button for the user to click to initiate auth sequence
+                  button#authorize-import(onclick='handleAuthClickImport(event)')
+                     | Import
+               pre#outputimport.
+
+               #authorize-div-export(style='display: inline')
+                  span Export Events to Google Calendar
+                  // Button for the user to click to initiate auth sequence
+                  button#authorize-export(onclick='handleAuthClickExport(event)')
+                     | Export
+               pre#outputexport.
+
+               br
+               a(class="invisible" href='#', onclick='')
+               img(class ="invisible" src='https://mail.google.com/mail/u/0/?logout&hl=en')
+
+               br

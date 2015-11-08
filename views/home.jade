@@ -1,0 +1,27 @@
+extends layout
+
+block content
+	script(src='/javascripts/home.js')
+	div.container
+		div.row
+			div.col-sm-10.col-md-10.col-md-offset-1
+				#title
+				div.signup-wall(align='center')
+					div(align='right')
+					a(href='#raptors') Add New Event
+					| &nbsp; | &nbsp;
+					a(href='/search', class='button') Search Events
+					| &nbsp; | &nbsp;
+					a(href='/calendarview', class='button') Calender View
+					| &nbsp; | &nbsp;
+					a(href='/google', class='button') Google Calendar Sync
+					| &nbsp; | &nbsp;
+					a(href='/signout', class='button') Sign Out
+
+					h2 Upcoming Events List
+					#eventListTable
+					#message
+
+					h3 Add Event
+					#form-addevent
+					a(name='raptors')

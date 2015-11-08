@@ -1,0 +1,30 @@
+//
+   Created by Navii on 11/5/2015.
+
+extends layout
+block content
+    script(src='/javascripts/calendarview.js')
+    meta(charset='utf-8')
+    link(href='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.css', rel='stylesheet')
+    link(href='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.print.css', rel='stylesheet', media='print')
+    script(src='http://fullcalendar.io/js/fullcalendar-2.4.0/lib/moment.min.js')
+    script(src='http://fullcalendar.io/js/fullcalendar-2.4.0/lib/jquery.min.js')
+    script(src='http://fullcalendar.io/js/fullcalendar-2.4.0/fullcalendar.min.js')
+    div.container
+        div.row
+            div.col-sm-10.col-md-10.col-md-offset-1
+                #title
+                div.signup-wall(align='center')
+                    div(align='center')
+                    a(href='/home', class='button') Home
+                    | &nbsp; | &nbsp;
+                    a(href='/search', class='button') Search
+                    | &nbsp; | &nbsp;
+                    a(href='/google', class='button') Google Calendar Sync
+                    | &nbsp; | &nbsp;
+                    a(href='/signout', class='button') Sign Out
+                    br
+
+                    br
+                    #calendar
+                    br

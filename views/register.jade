@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    script(src='/javascripts/signup.js')
+    div.container
+        div.row
+            div.col-sm-6.col-md-4.col-md-offset-4
+                h1.text-center.login-title New Account Details
+                    div.signup-wall
+                        #form-signup
+
+                    br
+                    a(href='/', class='button') Back
+                    #message

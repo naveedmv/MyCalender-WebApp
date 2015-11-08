@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	script(src='/javascripts/edit.js')
+	div.container
+		div.row
+			div.col-sm-10.col-md-10.col-md-offset-1
+				#title
+				div.signup-wall(align='center')
+					div(align='center')
+					a(href='/home', class='button') Home
+					| &nbsp; | &nbsp;
+					a(href='/search', class='button') Search
+					| &nbsp; | &nbsp;
+					a(href='/calendarview', class='button') Calender View
+					| &nbsp; | &nbsp;
+					a(href='/google', class='button') Google Calendar Sync
+					| &nbsp; | &nbsp;
+					a(href='/signout', class='button') Sign Out
+
+					h3 Update Options
+					#form-editevent
+					br
