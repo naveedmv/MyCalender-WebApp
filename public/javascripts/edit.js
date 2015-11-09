@@ -39,7 +39,7 @@ function UpdateEvent(event) {
         $.ajax({
             type: 'PUT',
             data: updatedevent,
-            url: 'http://130.233.42.143:3000/updateevent/' + $("#btnUpdateEvent").attr('value')
+            url: 'http://130.233.42.143:8080/updateevent/' + $("#btnUpdateEvent").attr('value')
         }).done(function( res ) {
             // Check for a successful response
             if (res) {

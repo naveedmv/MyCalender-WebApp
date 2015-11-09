@@ -86,7 +86,7 @@ function SearchEvent(event) {
     $.ajax({
         type: 'GET',
         data: event2search,
-        url: 'http://130.233.42.143:3000/searchevent',
+        url: 'http://130.233.42.143:8080/searchevent',
         dataType: 'JSON'
     }).done(function( res ) {
         if (res) {
@@ -122,7 +122,7 @@ function DeleteEvent(event) {
     if (confirmation === true) {
         $.ajax({
             type: 'DELETE',
-            url: 'http://130.233.42.143:3000/deleteevent/' + $(this).attr('value')
+            url: 'http://130.233.42.143:8080/deleteevent/' + $(this).attr('value')
         }).done(function( res ) {
             // Check for a successful response
             if (res) {

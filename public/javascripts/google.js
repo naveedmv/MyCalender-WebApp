@@ -138,7 +138,7 @@ function ImportGoogleEvents(events) {
         $.ajax({
             type: 'POST',
             data: event2add,
-            url: 'http://130.233.42.143:3000/addevent',
+            url: 'http://130.233.42.143:8080/addevent',
             dataType: 'JSON'
         }).done();
     }
@@ -239,7 +239,7 @@ function ExportLocalEvents() {
                     $.ajax({
                         type: 'PUT',
                         data: updateevent_gID,
-                        url: 'http://130.233.42.143:3000/updateevent/' + this._id
+                        url: 'http://130.233.42.143:8080/updateevent/' + this._id
                     }).done(function( res ) {
                         console.log(res);
                     });

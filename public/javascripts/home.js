@@ -118,7 +118,7 @@ function AddEvent(event) {
     $.ajax({
         type: 'POST',
         data: event2add,
-        url: 'http://130.233.42.143:3000/addevent',
+        url: 'http://130.233.42.143:8080/addevent',
         dataType: 'JSON'
     }).done(function( res ) {
         if (res.exists) {
@@ -142,7 +142,7 @@ function DeleteEvent(event) {
     if (confirmation === true) {
         $.ajax({
             type: 'DELETE',
-            url: 'http://130.233.42.143:3000/deleteevent/' + $(this).attr('value')
+            url: 'http://130.233.42.143:8080/deleteevent/' + $(this).attr('value')
         }).done(function( res ) {
             // Check for a successful response
             if (res) {
