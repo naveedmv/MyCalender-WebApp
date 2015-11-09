@@ -200,54 +200,59 @@ function loadCalendarApiExport() {
 
 
 function ExportLocalEvents() {
+	var request = gapi.client.calendar.events.list({
+		'calendarId': 'primary'
+    });
+    request.execute(function (resp) {
+        var email=resp.summary;
+		// Pop up a confirmation dialog
+		var confirmation = confirm('Export Local Calender Events to '+ email +' ?');
+		// Check and make sure the user confirmed
+		if (confirmation === true) {
+			appendPreExport('Exported events:');
+			$.getJSON( '/eventlist', function( data ) {
+				var eventsdata=data.events;
+				$.each(eventsdata, function(){
+					if(!this.google_id){
+						//prepare event variable from our events DB
+						var event2export = {
+							'summary': this.description,
+							'location': this.location,
+							'start': {
+								'dateTime': this.from_date+ 'T' + this.start_time + ':00+02:00'//'2015-05-28T09:00:00-07:00',
+								//'timeZone': 'Finland/Helsinki'
+							},
+							'end': {
+								'dateTime': this.to_date+ 'T' +this.end_time  + ':00+02:00'//'2015-05-28T17:00:00-07:00',
+								//'timeZone': 'Finland/Helsinki'
+							}
+						}
 
-    // Pop up a confirmation dialog
-    var confirmation = confirm('Export Local Calender Events?');
-    // Check and make sure the user confirmed
-    if (confirmation === true) {
-        appendPreExport('Exported events:');
-        $.getJSON( '/eventlist', function( data ) {
-            var eventsdata=data.events;
-            $.each(eventsdata, function(){
-                if(!this.google_id){
-                    //prepare event variable from our events DB
-                    var event2export = {
-                        'summary': this.description,
-                        'location': this.location,
-                        'start': {
-                            'dateTime': this.from_date+ 'T' + this.start_time + ':00+02:00'//'2015-05-28T09:00:00-07:00',
-                            //'timeZone': 'Finland/Helsinki'
-                        },
-                        'end': {
-                            'dateTime': this.to_date+ 'T' +this.end_time  + ':00+02:00'//'2015-05-28T17:00:00-07:00',
-                            //'timeZone': 'Finland/Helsinki'
-                        }
-                    }
+						var request = gapi.client.calendar.events.insert({
+							'calendarId': 'primary',
+							'resource': event2export
+						});
+						request.execute(function(event2export) {
+							appendPreExport(event2export.summary + event2export.start.dateTime);
+						});
 
-                    var request = gapi.client.calendar.events.insert({
-                        'calendarId': 'primary',
-                        'resource': event2export
-                    });
-                    request.execute(function(event2export) {
-                        appendPreExport(event2export.summary + event2export.start.dateTime);
-                    });
+						//assign google_id for the exported event to prevent duplicate export in future
+						var randomN= Math.random();
+						var updateevent_gID = {'google_id': randomN };
 
-                    //assign google_id for the exported event to prevent duplicate export in future
-                    var randomN= Math.random();
-                    var updateevent_gID = {'google_id': randomN };
+						$.ajax({
+							type: 'PUT',
+							data: updateevent_gID,
+							url: 'http://localhost:3000/updateevent/' + this._id
+						}).done(function( res ) {
+							console.log(res);
+						});
 
-                    $.ajax({
-                        type: 'PUT',
-                        data: updateevent_gID,
-                        url: 'http://130.233.42.143:8080/updateevent/' + this._id
-                    }).done(function( res ) {
-                        console.log(res);
-                    });
-
-                }
-            });
-        });
-    }
+					}
+				});
+			});
+		}		
+	});
 }
 
 /**
